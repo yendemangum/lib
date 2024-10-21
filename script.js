@@ -1,10 +1,11 @@
 let myLibrary = [];
 
-function Book(title, author, pageNum, isRead) {
+class Book {
+    constructor (title, author, pageNum, isRead) {
     this.title = title;
     this.author = author;
     this.pageNum = pageNum;
-    this.isRead = isRead;
+    this.isRead = isRead; }
 }
 
 function addBookToLibrary(book) {
@@ -68,5 +69,31 @@ function showBooks() {
             book.removeChild(button2)
         })
     }
-    
 }
+
+const title = document.getElementById("title")
+title.addEventListener("input", (event) => {
+    if (title.validity.valueMissing) {
+        title.setCustomValidity("Title is a required field")
+    } else {
+        title.setCustomValidity("")
+    }
+})
+
+const author = document.querySelector("#author")
+author.addEventListener("input", (event) => {
+    if (author.validity.valueMissing) {
+        author.setCustomValidity("Author is a required field")
+    } else {
+        author.setCustomValidity("")
+    }
+})
+
+const pageNum = document.querySelector("#page-num")
+pageNum.addEventListener("input", (event) => {
+    if (pageNum.validity.rangeUnderflow) {
+        pageNum.setCustomValidity("Must have greater than 0 pages")
+    } else {
+        pageNum.setCustomValidity("")
+    }
+})
